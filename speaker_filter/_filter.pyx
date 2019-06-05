@@ -1,3 +1,5 @@
+# cython: language_level=3
+
 import cython
 import numpy as np
 cimport numpy as np
@@ -76,7 +78,7 @@ def filter_signal(chunks, int chunk_size):
         chunk_size = chunk.shape[0]
         new_chunk = np.empty(chunk_size)
 
-        err = _process_chunk(chunk, new_chunk, chunk_buffer, chunk_size, window_size)
+        err = _process_chunk(chunk, new_chunk, chunk_buffer, chunk_size, chunk_size)
         if err == -1:
             raise RuntimeError('Error in chunk processing')
 
